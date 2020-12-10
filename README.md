@@ -3,4 +3,7 @@ This is an adapted version of the [Gremlin.Net](https://github.com/apache/tinker
 
 I have modified it to handle the case where the server has dropped the connection without notifying the client.  In that case, the call to the server will hang until it times out, sometimes up to 60 seconds!  Essentially, this modification forces the client to check the connection status before submitting the request.  In the case where the status of the connection is not open, the modification will refresh the connection, then send the request.  This allows the code that calls this layer to not require any knowledge of this process.
 
-Conceptually, if the server drops the connection, the client should update itself.  In practice, however, this hack has been working great for me with no errors for about six months on a well-used production app whose data is ALL Cosmos Db Graph API.
+Conceptually, if the server drops the connection, the client should update itself.  In practice, however, this hack has been working great for me with no errors for about six months on a well-used production app whose data is ALL Cosmos Db Graph API.'
+
+## Update - Parent Project Appears to be fixed
+Please take a look at Apach Tinkerpop, as I have tested updated code, and it appears to handle connection timeouts more efficiently now.
